@@ -183,24 +183,46 @@
             }
         }
 
-        /* Styles for the new Showcase Video Section */
-        .showcase-video-container {
+        /* Styles for the new Showcase Video Section and Modules Section */
+        .showcase-video-container, .module-card {
             position: relative;
-            width: 100%;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio (height / width * 100%) */
-            height: 0;
-            overflow: hidden;
             background-color: #000; /* Black background for video area */
             border-radius: 0.5rem; /* Rounded corners */
             box-shadow: var(--shadow-material-2);
+            overflow: hidden; /* Ensure content stays within rounded corners */
+        }
+        .showcase-video-container {
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio (height / width * 100%) */
+            height: 0;
         }
 
-        .showcase-video-container iframe {
+        .showcase-video-container iframe, .module-card iframe {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+        }
+
+        .module-card {
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-material-3);
+        }
+
+        .module-card-image {
+            width: 100%;
+            height: 200px; /* Fixed height for module images */
+            object-fit: cover; /* Cover the area, cropping if necessary */
+            border-top-left-radius: 0.5rem;
+            border-top-right-radius: 0.5rem;
         }
     </style>
 </head>
@@ -222,8 +244,10 @@
                 <li><a href="#hero" class="block md:inline-block text-gray-700 hover:text-logo-blue px-4 py-2 md:p-0 transition-colors duration-300">Home</a></li>
                 <li><a href="#solutions" class="block md:inline-block text-gray-700 hover:text-logo-blue px-4 py-2 md:p-0 transition-colors duration-300">Solutions</a></li>
                 <li><a href="#products" class="block md:inline-block text-gray-700 hover:text-logo-blue px-4 py-2 md:p-0 transition-colors duration-300">Products</a></li>
+                <li><a href="#modules" class="block md:inline-block text-gray-700 hover:text-logo-blue px-4 py-2 md:p-0 transition-colors duration-300">Modules</a></li>
                 <li><a href="#industries" class="block md:inline-block text-gray-700 hover:text-logo-blue px-4 py-2 md:p-0 transition-colors duration-300">Industries</a></li>
                 <li><a href="#resources" class="block md:inline-block text-gray-700 hover:text-logo-blue px-4 py-2 md:p-0 transition-colors duration-300">Resources</a></li>
+                <li><a href="#showcase-video" class="block md:inline-block text-gray-700 hover:text-logo-blue px-4 py-2 md:p-0 transition-colors duration-300">Showcase</a></li>
                 <li><a href="#contact" class="block md:inline-block text-gray-700 hover:text-logo-blue px-4 py-2 md:p-0 transition-colors duration-300">Contact</a></li>
             </ul>
         </nav>
@@ -401,6 +425,76 @@
                         </div>
                         <p class="text-gray-700">Track customer complaints, boost KPIs, and monitor energy usage and CO2 emissions for a greener, more efficient operation.</p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Modules Section -->
+        <section id="modules" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-primary-dark-grey animate-fadeIn" style="animation-delay: 0.2s;">
+                    Explore Our Core Modules
+                </h2>
+                <p class="text-lg text-center text-gray-700 mb-12 max-w-3xl mx-auto animate-fadeIn" style="animation-delay: 0.4s;">
+                    Thingtrax offers a comprehensive suite of modules designed to enhance every aspect of your manufacturing operations, from leadership insights to shop floor efficiency.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Module Card: Leadership Dashboard -->
+                    <a href="https://thingtrax.com/product-leadership/" target="_blank" class="module-card animate-fadeIn" style="animation-delay: 0.6s;">
+                        <img src="https://thingtrax.com/wp-content/uploads/2022/12/LEADERSHIP_CAROUSEL-1A.png" alt="Leadership Dashboard" class="module-card-image">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">Leadership Dashboard</h3>
+                            <p class="text-gray-700">Gain real-time executive insights with a comprehensive dashboard for productivity analysis, trend reporting, and benchmarking across your entire operation.</p>
+                        </div>
+                    </a>
+                    <!-- Module Card: Data Capture -->
+                    <a href="https://thingtrax.com/data-capture-display/" target="_blank" class="module-card animate-fadeIn" style="animation-delay: 0.8s;">
+                        <img src="https://thingtrax.com/wp-content/uploads/2022/12/ONEAPP_CAROUSEL-4A.png" alt="Data Capture & Display" class="module-card-image">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">Data Capture & Display</h3>
+                            <p class="text-gray-700">Connect your facility with IoT technology, sensors, and AI-powered computer vision for real-time oversight of equipment and human processes.</p>
+                        </div>
+                    </a>
+                    <!-- Module Card: Maintenance -->
+                    <a href="https://thingtrax.com/productivity-maintenance/" target="_blank" class="module-card animate-fadeIn" style="animation-delay: 1.0s;">
+                        <img src="https://thingtrax.com/wp-content/uploads/2022/12/MAINTENANCE-1.png" alt="Maintenance" class="module-card-image">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">Maintenance</h3>
+                            <p class="text-gray-700">Proactively plan maintenance cycles based on real-time run-time data, reducing costs and preventing critical failures on your production line.</p>
+                        </div>
+                    </a>
+                    <!-- Module Card: Daily Management -->
+                    <a href="https://thingtrax.com/daily-management/" target="_blank" class="module-card animate-fadeIn" style="animation-delay: 1.2s;">
+                        <img src="https://thingtrax.com/wp-content/uploads/2022/12/DAILY_CAROUSEL-2A.png" alt="Daily Management" class="module-card-image">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">Daily Management</h3>
+                            <p class="text-gray-700">Empower teams with digital functions and templates for daily huddles, fostering a culture of continuous improvement and accountability.</p>
+                        </div>
+                    </a>
+                    <!-- Module Card: Productivity -->
+                    <a href="https://thingtrax.com/productivity/" target="_blank" class="module-card animate-fadeIn" style="animation-delay: 1.4s;">
+                        <img src="https://thingtrax.com/wp-content/uploads/2022/12/PRODUCTIVITY-1.png" alt="Productivity" class="module-card-image">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">Productivity</h3>
+                            <p class="text-gray-700">Measure and display OEE in real-time, with drag-and-drop tools for proactive planning, rescheduling, and detailed downtime analysis to boost efficiency.</p>
+                        </div>
+                    </a>
+                    <!-- Module Card: Quality -->
+                    <a href="https://thingtrax.com/productivity-quality/" target="_blank" class="module-card animate-fadeIn" style="animation-delay: 1.6s;">
+                        <img src="https://thingtrax.com/wp-content/uploads/2022/12/QUALITY-1.png" alt="Quality" class="module-card-image">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">Quality</h3>
+                            <p class="text-gray-700">Boost KPIs with in-line AI Vision to spot deviations from quality standards instantly and coordinate rapid problem-solving efforts.</p>
+                        </div>
+                    </a>
+                    <!-- Module Card: Sustainability -->
+                    <a href="https://thingtrax.com/productivity-sustainability/" target="_blank" class="module-card animate-fadeIn" style="animation-delay: 1.8s;">
+                        <img src="https://thingtrax.com/wp-content/uploads/2022/12/SUSTAINABILITY-02.png" alt="Sustainability" class="module-card-image">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">Sustainability</h3>
+                            <p class="text-gray-700">Track and monitor energy usage and CO2 emissions, enabling your manufacturing operations to become greener and more efficient.</p>
+                        </div>
+                    </a>
                 </div>
             </div>
         </section>
