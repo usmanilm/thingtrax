@@ -27,7 +27,7 @@
             --logo-red: #F44336; /* Closest Material Design red for bottom-left square */
             --accent-orange: #FFB300; /* Keeping a vibrant orange for CTA */
             --text-dark: #333;
-            --text-light: #f5f5f5;
+            --text-light: #f5f5f5; /* White for light text */
         }
 
         .bg-primary-dark-grey { background-color: var(--primary-dark-grey); }
@@ -108,6 +108,14 @@
             z-index: 10;
             padding-bottom: 1rem;
         }
+        /* Mobile menu text color to white */
+        .nav-menu.open a {
+            color: var(--text-light); /* White text for open mobile menu */
+        }
+        .nav-menu.open a:hover {
+            color: var(--accent-orange); /* Hover color for white text */
+        }
+
         @media (min-width: 768px) {
             .nav-menu {
                 display: flex;
@@ -148,6 +156,15 @@
                 transform: translate(-50%, -50%) scale(1.2); /* Slightly less zoom on desktop */
             }
         }
+        /* Ensure video covers entire hero section on mobile by making iframe larger */
+        @media (max-width: 767px) {
+            .hero-video-container iframe {
+                width: 150vw; /* Make it wider than viewport */
+                height: 150vh; /* Make it taller than viewport */
+                transform: translate(-50%, -50%) scale(1); /* No additional scale, let width/height handle cover */
+            }
+        }
+
 
         .video-overlay {
             position: absolute;
@@ -180,7 +197,7 @@
         <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center">
                 <!-- PNG Logo -->
-                <img src="https://raw.githubusercontent.com/usmanilm/thingtrax/refs/heads/main/img/thingtrxlogo.png" alt="Thingtrax Logo" class="h-10 w-auto mr-2">
+                <img src="/img/thingtrxlogo.png" alt="Thingtrax Logo" class="h-10 w-auto mr-2">
             </div>
             <div class="md:hidden">
                 <button id="hamburger" class="text-primary-dark-grey focus:outline-none">
