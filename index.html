@@ -18,18 +18,31 @@
             overflow-x: hidden; /* Prevent horizontal scroll */
         }
 
-        /* Define Brand Colors (Replace with exact colors from your logo SVG) */
+        /* Define Brand Colors adapted from logo */
         :root {
-            --primary-blue: #1976D2; /* Example: Material Blue 700 */
-            --accent-orange: #FFB300; /* Example: Material Amber 700 */
+            --primary-dark-grey: #333333; /* From the 'thingtrax' text in the logo */
+            --logo-green: #4CAF50; /* Closest Material Design green for top-left square */
+            --logo-yellow: #FFC107; /* Closest Material Design yellow for top-right square */
+            --logo-blue: #2196F3; /* Closest Material Design blue for bottom-right square */
+            --logo-red: #F44336; /* Closest Material Design red for bottom-left square */
+            --accent-orange: #FFB300; /* Keeping a vibrant orange for CTA */
             --text-dark: #333;
             --text-light: #f5f5f5;
         }
 
-        .bg-primary-blue { background-color: var(--primary-blue); }
-        .text-primary-blue { color: var(--primary-blue); }
+        .bg-primary-dark-grey { background-color: var(--primary-dark-grey); }
+        .text-primary-dark-grey { color: var(--primary-dark-grey); }
+        .bg-logo-green { background-color: var(--logo-green); }
+        .text-logo-green { color: var(--logo-green); }
+        .bg-logo-yellow { background-color: var(--logo-yellow); }
+        .text-logo-yellow { color: var(--logo-yellow); }
+        .bg-logo-blue { background-color: var(--logo-blue); }
+        .text-logo-blue { color: var(--logo-blue); }
+        .bg-logo-red { background-color: var(--logo-red); }
+        .text-logo-red { color: var(--logo-red); }
         .bg-accent-orange { background-color: var(--accent-orange); }
         .text-accent-orange { color: var(--accent-orange); }
+
 
         /* Material Design Shadows */
         .shadow-material-1 { box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); }
@@ -91,7 +104,7 @@
             top: 64px; /* Height of header */
             left: 0;
             width: 100%;
-            background-color: var(--primary-blue);
+            background-color: var(--primary-dark-grey); /* Use a darker color for mobile menu */
             z-index: 10;
             padding-bottom: 1rem;
         }
@@ -123,18 +136,16 @@
             width: 100%;
             height: 100%;
             position: absolute;
-            top: 0;
-            left: 0;
-            /* To achieve "object-fit: cover" like behavior for iframes,
-               we scale it up and position it. This is a common trick. */
-            transform: scale(1.5); /* Zoom in for mobile */
+            top: 50%; /* Center the video */
+            left: 50%; /* Center the video */
+            transform: translate(-50%, -50%) scale(1.5); /* Zoom in for mobile and initial desktop */
             transform-origin: center center;
         }
 
         /* Responsive adjustment for zoom */
         @media (min-width: 768px) {
             .hero-video-container iframe {
-                transform: scale(1.0); /* Less zoom on desktop */
+                transform: translate(-50%, -50%) scale(1.2); /* Slightly less zoom on desktop */
             }
         }
 
@@ -151,6 +162,14 @@
         .hero-content {
             position: relative;
             z-index: 2; /* Ensure content is above overlay and video */
+            padding-left: 1rem; /* Added space on the left for hero text */
+            padding-right: 1rem; /* Ensure right side is also not extreme */
+        }
+
+        @media (min-width: 768px) {
+            .hero-content {
+                padding-left: 4rem; /* More space on desktop */
+            }
         }
     </style>
 </head>
@@ -160,32 +179,28 @@
     <header class="bg-white shadow-material-1 fixed w-full z-20">
         <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center">
-                <!-- Inline SVG Logo - Replace with your actual SVG content if available -->
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="thingtrxlogo.png" class="mr-2">
-                    <rect x="2" y="2" width="20" height="20" rx="4" fill="var(--primary-blue)"/>
-                    <path d="M7 12L10 15L17 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span class="text-2xl font-bold text-primary-blue">Thingtrax</span>
+                <!-- PNG Logo -->
+                <img src="/img/thingtrxlogo.png" alt="Thingtrax Logo" class="h-10 w-auto mr-2">
             </div>
             <div class="md:hidden">
-                <button id="hamburger" class="text-primary-blue focus:outline-none">
+                <button id="hamburger" class="text-primary-dark-grey focus:outline-none">
                     <span class="material-icons text-3xl">menu</span>
                 </button>
             </div>
             <ul id="navMenu" class="nav-menu md:flex md:space-x-8 text-lg font-medium">
-                <li><a href="#hero" class="block md:inline-block text-gray-700 hover:text-primary-blue px-4 py-2 md:p-0 transition-colors duration-300">Home</a></li>
-                <li><a href="#solutions" class="block md:inline-block text-gray-700 hover:text-primary-blue px-4 py-2 md:p-0 transition-colors duration-300">Solutions</a></li>
-                <li><a href="#products" class="block md:inline-block text-gray-700 hover:text-primary-blue px-4 py-2 md:p-0 transition-colors duration-300">Products</a></li>
-                <li><a href="#industries" class="block md:inline-block text-gray-700 hover:text-primary-blue px-4 py-2 md:p-0 transition-colors duration-300">Industries</a></li>
-                <li><a href="#resources" class="block md:inline-block text-gray-700 hover:text-primary-blue px-4 py-2 md:p-0 transition-colors duration-300">Resources</a></li>
-                <li><a href="#contact" class="block md:inline-block text-gray-700 hover:text-primary-blue px-4 py-2 md:p-0 transition-colors duration-300">Contact</a></li>
+                <li><a href="#hero" class="block md:inline-block text-gray-700 hover:text-logo-blue px-4 py-2 md:p-0 transition-colors duration-300">Home</a></li>
+                <li><a href="#solutions" class="block md:inline-block text-gray-700 hover:text-logo-blue px-4 py-2 md:p-0 transition-colors duration-300">Solutions</a></li>
+                <li><a href="#products" class="block md:inline-block text-gray-700 hover:text-logo-blue px-4 py-2 md:p-0 transition-colors duration-300">Products</a></li>
+                <li><a href="#industries" class="block md:inline-block text-gray-700 hover:text-logo-blue px-4 py-2 md:p-0 transition-colors duration-300">Industries</a></li>
+                <li><a href="#resources" class="block md:inline-block text-gray-700 hover:text-logo-blue px-4 py-2 md:p-0 transition-colors duration-300">Resources</a></li>
+                <li><a href="#contact" class="block md:inline-block text-gray-700 hover:text-logo-blue px-4 py-2 md:p-0 transition-colors duration-300">Contact</a></li>
             </ul>
         </nav>
     </header>
 
     <main class="pt-16">
         <!-- Hero Section -->
-        <section id="hero" class="relative bg-primary-blue text-white py-20 md:py-32 overflow-hidden flex items-center justify-center min-h-[60vh] md:min-h-[80vh]">
+        <section id="hero" class="relative bg-primary-dark-grey text-white py-20 md:py-32 overflow-hidden flex items-center justify-center min-h-[60vh] md:min-h-[80vh]">
             <!-- Background Video Container -->
             <div class="hero-video-container">
                 <iframe
@@ -198,7 +213,7 @@
                 <div class="video-overlay"></div>
             </div>
 
-            <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between hero-content">
+            <div class="container mx-auto flex flex-col md:flex-row items-center justify-between hero-content">
                 <div class="md:w-1/2 text-center md:text-left mb-10 md:mb-0 animate-slideInLeft" style="animation-delay: 0.2s;">
                     <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4">
                         <span class="block">Revolutionize <span class="text-accent-orange">Manufacturing</span></span>
@@ -211,7 +226,7 @@
                         <a href="#solutions" class="material-button bg-accent-orange text-gray-900 font-semibold py-3 px-8 rounded-full text-lg hover:bg-yellow-500 transition duration-300">
                             Explore Solutions
                         </a>
-                        <a href="#contact" class="material-button bg-white text-primary-blue font-semibold py-3 px-8 rounded-full text-lg hover:bg-gray-100 transition duration-300">
+                        <a href="#contact" class="material-button bg-white text-primary-dark-grey font-semibold py-3 px-8 rounded-full text-lg hover:bg-gray-100 transition duration-300">
                             Request a Demo
                         </a>
                     </div>
@@ -221,21 +236,21 @@
                 </div>
             </div>
             <!-- Background pattern/shapes for visual interest - keep for subtle design -->
-            <div class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-primary-blue to-transparent opacity-20 z-1"></div>
-            <div class="absolute top-0 right-0 w-1/3 h-1/2 bg-gradient-to-l from-primary-blue to-transparent opacity-10 transform rotate-45 z-1"></div>
+            <div class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-primary-dark-grey to-transparent opacity-20 z-1"></div>
+            <div class="absolute top-0 right-0 w-1/3 h-1/2 bg-gradient-to-l from-primary-dark-grey to-transparent opacity-10 transform rotate-45 z-1"></div>
         </section>
 
         <!-- Solutions Section -->
         <section id="solutions" class="py-16 md:py-24 bg-white">
             <div class="container mx-auto px-4">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-primary-blue animate-fadeIn" style="animation-delay: 0.6s;">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-primary-dark-grey animate-fadeIn" style="animation-delay: 0.6s;">
                     Unlock Peak Performance for Every Role
                 </h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Solution Card 1: Leaders -->
                     <div class="bg-gray-50 p-6 rounded-lg shadow-material-2 animate-fadeIn" style="animation-delay: 0.8s;">
                         <div class="flex items-center mb-4">
-                            <span class="material-icons text-primary-blue text-4xl mr-3">leaderboard</span>
+                            <span class="material-icons text-logo-green text-4xl mr-3">leaderboard</span>
                             <h3 class="text-xl font-semibold text-gray-900">For Leaders</h3>
                         </div>
                         <p class="text-gray-700">Gain real-time executive insights with a comprehensive dashboard for productivity analysis, trend reporting, and benchmarking across your entire operation.</p>
@@ -243,7 +258,7 @@
                     <!-- Solution Card 2: Operations Managers -->
                     <div class="bg-gray-50 p-6 rounded-lg shadow-material-2 animate-fadeIn" style="animation-delay: 1.0s;">
                         <div class="flex items-center mb-4">
-                            <span class="material-icons text-primary-blue text-4xl mr-3">build</span>
+                            <span class="material-icons text-logo-yellow text-4xl mr-3">build</span>
                             <h3 class="text-xl font-semibold text-gray-900">For Operations Managers</h3>
                         </div>
                         <p class="text-gray-700">Streamline and optimize manufacturing processes with a powerful platform designed for continuous improvement and daily operational excellence.</p>
@@ -251,7 +266,7 @@
                     <!-- Solution Card 3: Supervisors -->
                     <div class="bg-gray-50 p-6 rounded-lg shadow-material-2 animate-fadeIn" style="animation-delay: 1.2s;">
                         <div class="flex items-center mb-4">
-                            <span class="material-icons text-primary-blue text-4xl mr-3">schedule</span>
+                            <span class="material-icons text-logo-blue text-4xl mr-3">schedule</span>
                             <h3 class="text-xl font-semibold text-gray-900">For Supervisors</h3>
                         </div>
                         <p class="text-gray-700">Optimize production schedules, allocate resources efficiently, anticipate bottlenecks, and strategically schedule maintenance to minimize downtime.</p>
@@ -259,7 +274,7 @@
                     <!-- Solution Card 4: Operators -->
                     <div class="bg-gray-50 p-6 rounded-lg shadow-material-2 animate-fadeIn" style="animation-delay: 1.4s;">
                         <div class="flex items-center mb-4">
-                            <span class="material-icons text-primary-blue text-4xl mr-3">precision_manufacturing</span>
+                            <span class="material-icons text-logo-red text-4xl mr-3">precision_manufacturing</span>
                             <h3 class="text-xl font-semibold text-gray-900">For Operators</h3>
                         </div>
                         <p class="text-gray-700">Access visual dashboards for real-time monitoring of productivity and quality, enabling early issue identification and rapid problem-solving directly on the line.</p>
@@ -267,7 +282,7 @@
                     <!-- Solution Card 5: Planners -->
                     <div class="bg-gray-50 p-6 rounded-lg shadow-material-2 animate-fadeIn" style="animation-delay: 1.6s;">
                         <div class="flex items-center mb-4">
-                            <span class="material-icons text-primary-blue text-4xl mr-3">assignment</span>
+                            <span class="material-icons text-logo-green text-4xl mr-3">assignment</span>
                             <h3 class="text-xl font-semibold text-gray-900">For Planners</h3>
                         </div>
                         <p class="text-gray-700">Analyze productivity and trends to align product, people, and equipment in production schedules.</p>
@@ -275,7 +290,7 @@
                     <!-- Solution Card 6: Engineers -->
                     <div class="bg-gray-50 p-6 rounded-lg shadow-material-2 animate-fadeIn" style="animation-delay: 1.8s;">
                         <div class="flex items-center mb-4">
-                            <span class="material-icons text-primary-blue text-4xl mr-3">engineering</span>
+                            <span class="material-icons text-logo-yellow text-4xl mr-3">engineering</span>
                             <h3 class="text-xl font-semibold text-gray-900">For Engineers</h3>
                         </div>
                         <p class="text-gray-700">Leverage real-time data and predictive analytics to monitor equipment performance, proactively identify issues, and significantly reduce maintenance costs.</p>
@@ -283,7 +298,7 @@
                     <!-- Solution Card 7: Quality Assurance -->
                     <div class="bg-gray-50 p-6 rounded-lg shadow-material-2 animate-fadeIn" style="animation-delay: 2.0s;">
                         <div class="flex items-center mb-4">
-                            <span class="material-icons text-primary-blue text-4xl mr-3">verified</span>
+                            <span class="material-icons text-logo-blue text-4xl mr-3">verified</span>
                             <h3 class="text-xl font-semibold text-gray-900">For Quality Assurance</h3>
                         </div>
                         <p class="text-gray-700">Boost KPIs with in-line AI Vision to spot deviations from quality standards instantly and coordinate rapid problem-solving efforts.</p>
@@ -291,7 +306,7 @@
                      <!-- Solution Card 8: Continuous Improvement -->
                     <div class="bg-gray-50 p-6 rounded-lg shadow-material-2 animate-fadeIn" style="animation-delay: 2.2s;">
                         <div class="flex items-center mb-4">
-                            <span class="material-icons text-primary-blue text-4xl mr-3">loop</span>
+                            <span class="material-icons text-logo-red text-4xl mr-3">loop</span>
                             <h3 class="text-xl font-semibold text-gray-900">For Continuous Improvement</h3>
                         </div>
                         <p class="text-gray-700">Pair real-time factory floor data with WCM and Lean processes to boost productivity and build a high-performance culture.</p>
@@ -303,7 +318,7 @@
         <!-- Products Section -->
         <section id="products" class="py-16 md:py-24 bg-gray-100">
             <div class="container mx-auto px-4">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-primary-blue animate-fadeIn" style="animation-delay: 0.2s;">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-primary-dark-grey animate-fadeIn" style="animation-delay: 0.2s;">
                     Our Integrated Product Modules
                 </h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -362,31 +377,31 @@
         <!-- Industries Section -->
         <section id="industries" class="py-16 md:py-24 bg-white">
             <div class="container mx-auto px-4">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-primary-blue animate-fadeIn" style="animation-delay: 0.2s;">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-primary-dark-grey animate-fadeIn" style="animation-delay: 0.2s;">
                     Trusted Across Leading Industries
                 </h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     <!-- Industry Card 1: Plastics -->
                     <div class="bg-gray-50 p-6 rounded-lg shadow-material-2 text-center animate-fadeIn" style="animation-delay: 0.4s;">
-                        <span class="material-icons text-primary-blue text-6xl mb-4">polymer</span>
+                        <span class="material-icons text-logo-green text-6xl mb-4">polymer</span>
                         <h3 class="text-xl font-semibold text-gray-900 mb-2">Plastics Manufacturing</h3>
                         <p class="text-gray-700">Specialized solutions for injection molding, extrusion, and all plastic production processes.</p>
                     </div>
                     <!-- Industry Card 2: Food & Beverage -->
                     <div class="bg-gray-50 p-6 rounded-lg shadow-material-2 text-center animate-fadeIn" style="animation-delay: 0.6s;">
-                        <span class="material-icons text-primary-blue text-6xl mb-4">local_dining</span>
+                        <span class="material-icons text-logo-yellow text-6xl mb-4">local_dining</span>
                         <h3 class="text-xl font-semibold text-gray-900 mb-2">Food & Beverage</h3>
                         <p class="text-gray-700">Ensure quality, compliance, and efficiency in food processing and packaging.</p>
                     </div>
                     <!-- Industry Card 3: Metal Fabrication -->
                     <div class="bg-gray-50 p-6 rounded-lg shadow-material-2 text-center animate-fadeIn" style="animation-delay: 0.8s;">
-                        <span class="material-icons text-primary-blue text-6xl mb-4">precision_manufacturing</span>
+                        <span class="material-icons text-logo-blue text-6xl mb-4">precision_manufacturing</span>
                         <h3 class="text-xl font-semibold text-gray-900 mb-2">Metal Fabrication</h3>
                         <p class="text-gray-700">Optimize cutting, welding, and assembly for precision metal components.</p>
                     </div>
                     <!-- Industry Card 4: Building Materials -->
                     <div class="bg-gray-50 p-6 rounded-lg shadow-material-2 text-center animate-fadeIn" style="animation-delay: 1.0s;">
-                        <span class="material-icons text-primary-blue text-6xl mb-4">construction</span>
+                        <span class="material-icons text-logo-red text-6xl mb-4">construction</span>
                         <h3 class="text-xl font-semibold text-gray-900 mb-2">Building Materials</h3>
                         <p class="text-gray-700">Enhance production of concrete, timber, and other construction essentials.</p>
                     </div>
@@ -397,7 +412,7 @@
         <!-- Resources Section -->
         <section id="resources" class="py-16 md:py-24 bg-gray-100">
             <div class="container mx-auto px-4">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-primary-blue animate-fadeIn" style="animation-delay: 0.2s;">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-primary-dark-grey animate-fadeIn" style="animation-delay: 0.2s;">
                     Explore Our Resources
                 </h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -407,7 +422,7 @@
                             <h3 class="text-xl font-semibold text-gray-900">Upcoming Events</h3>
                         </div>
                         <p class="text-gray-700 mb-4">Stay updated on where you can find Thingtrax, like our participation at IFE 2024.</p>
-                        <a href="#" class="text-primary-blue font-semibold hover:underline">View All Events &rarr;</a>
+                        <a href="#" class="text-logo-blue font-semibold hover:underline">View All Events &rarr;</a>
                     </div>
                     <div class="bg-white p-6 rounded-lg shadow-material-2 animate-fadeIn" style="animation-delay: 0.6s;">
                         <div class="flex items-center mb-4">
@@ -415,14 +430,14 @@
                             <h3 class="text-xl font-semibold text-gray-900">Latest Insights</h3>
                         </div>
                         <p class="text-gray-700 mb-4">Read articles on making sense of complex manufacturing data and practical solutions to Industry 4.0 challenges.</p>
-                        <a href="#" class="text-primary-blue font-semibold hover:underline">Read Our Blog &rarr;</a>
+                        <a href="#" class="text-logo-blue font-semibold hover:underline">Read Our Blog &rarr;</a>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Call to Action Section -->
-        <section id="contact" class="bg-primary-blue text-white py-16 md:py-24 text-center">
+        <section id="contact" class="bg-primary-dark-grey text-white py-16 md:py-24 text-center">
             <div class="container mx-auto px-4 animate-fadeIn" style="animation-delay: 0.2s;">
                 <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your Manufacturing?</h2>
                 <p class="text-lg md:text-xl mb-10 opacity-90">
