@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thingtrax - IoT SaaS Manufacturing Performance Software | Optimize Efficiency with AI</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Material Icons CDN -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        /* Custom styles and Material Design overrides */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f5f5; /* Light grey background */
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        /* Define Brand Colors (Replace with exact colors from your logo SVG) */
+        :root {
+            --primary-blue: #1976D2; /* Example: Material Blue 700 */
+            --accent-orange: #FFB300; /* Example: Material Amber 700 */
+            --text-dark: #333;
+            --text-light: #f5f5f5;
+        }
+
+        .bg-primary-blue { background-color: var(--primary-blue); }
+        .text-primary-blue { color: var(--primary-blue); }
+        .bg-accent-orange { background-color: var(--accent-orange); }
+        .text-accent-orange { color: var(--accent-orange); }
+
+        /* Material Design Shadows */
+        .shadow-material-1 { box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); }
+        .shadow-material-2 { box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15); }
+        .shadow-material-3 { box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); }
+
+        /* Custom Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn 0.8s ease-out forwards;
+            opacity: 0; /* Hidden by default, JS will add this on scroll */
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .animate-slideInLeft {
+            animation: slideInLeft 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .animate-slideInRight {
+            animation: slideInRight 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .material-button {
+            transition: all 0.3s ease;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .material-button:hover {
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+        .material-button:active {
+            box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+            transform: translateY(0);
+        }
+
+        /* Responsive Navigation */
+        .nav-menu {
+            display: none;
+        }
+        .nav-menu.open {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 64px; /* Height of header */
+            left: 0;
+            width: 100%;
+            background-color: var(--primary-blue);
+            z-index: 10;
+            padding-bottom: 1rem;
+        }
+        @media (min-width: 768px) {
+            .nav-menu {
+                display: flex;
+                flex-direction: row;
+                position: static;
+                background-color: transparent;
+                padding-bottom: 0;
+            }
+            .hamburger-menu {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white shadow-material-1 fixed w-full z-20">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <!-- Inline SVG Logo - Replace with your actual SVG content if available -->
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="mr-2">
+                    <rect x="2" y="2" width="20" height="20" rx="4" fill="var(--primary-blue)"/>
+                    <path d="M7 12L10 15L17 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="text-2xl font-bold text-primary-blue">Thingtrax</span>
+            </div>
+            <div class="md:hidden">
+                <button id="hamburger" class="text-primary-blue focus:outline-none">
+                    <span class="material-icons text-3xl">menu</span>
+                </button>
+            </div>
+            <ul id="navMenu" class="nav-menu md:flex md:space-x-8 text-lg font-medium">
+                <li><a href="#hero" class="block md:inline-block text-gray-700 hover:text-primary-blue px-4 py-2 md:p-0 transition-colors duration-300">Home</a></li>
+                <li><a href="#solutions" class="block md:inline-block text-gray-700 hover:text-primary-blue px-4 py-2 md:p-0 transition-colors duration-300">Solutions</a></li>
+                <li><a href="#products" class="block md:inline-block text-gray-700 hover:text-primary-blue px-4 py-2 md:p-0 transition-colors duration-300">Products</a></li>
+                <li><a href="#industries" class="block md:inline-block text-gray-700 hover:text-primary-blue px-4 py-2 md:p-0 transition-colors duration-300">Industries</a></li>
+                <li><a href="#resources" class="block md:inline-block text-gray-700 hover:text-primary-blue px-4 py-2 md:p-0 transition-colors duration-300">Resources</a></li>
+                <li><a href="#contact" class="block md:inline-block text-gray-700 hover:text-primary-blue px-4 py-2 md:p-0 transition-colors duration-300">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="pt-16">
+        <!-- Hero Section -->
+        <section id="hero" class="relative bg-primary-blue text-white py-20 md:py-32 overflow-hidden">
+            <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-1/2 text-center md:text-left mb-10 md:mb-0 animate-slideInLeft" style="animation-delay: 0.2s;">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4">
+                        <span class="block">Revolutionize <span class="text-accent-orange">Manufacturing</span></span>
+                        <span class="block">Performance with IoT & AI</span>
+                    </h1>
+                    <p class="text-lg md:text-xl mb-8 opacity-90">
+                        Thingtrax delivers cutting-edge IoT SaaS Manufacturing Performance Software and Vision AI to optimize your production lines, enhance OEE Analysis, and drive Line Efficiency.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#solutions" class="material-button bg-accent-orange text-gray-900 font-semibold py-3 px-8 rounded-full text-lg hover:bg-yellow-500 transition duration-300">
+                            Explore Solutions
+                        </a>
+                        <a href="#contact" class="material-button bg-white text-primary-blue font-semibold py-3 px-8 rounded-full text-lg hover:bg-gray-100 transition duration-300">
+                            Request a Demo
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center md:justify-end animate-slideInRight" style="animation-delay: 0.4s;">
+                    <!-- Placeholder for a compelling image/illustration -->
+                    <img src="https://placehold.co/600x400/FFFFFF/1976D2?text=Manufacturing+Dashboard" alt="Thingtrax Manufacturing Dashboard" class="rounded-lg shadow-material-3 max-w-full h-auto">
+                </div>
+            </div>
+            <!-- Background pattern/shapes for visual interest -->
+            <div class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-primary-blue to-transparent opacity-20"></div>
+            <div class="absolute top-0 right-0 w-1/3 h-1/2 bg-gradient-to-l from-primary-blue to-transparent opacity-10 transform rotate-45"></div>
+        </section>
+
+        <!-- Solutions Section -->
+        <section id="solutions" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-primary-blue animate-fadeIn" style="animation-delay: 0.6s;">
+                    Unlock Peak Performance for Every Role
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Solution Card 1: Leaders -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-material-2 animate-fadeIn" style="animation-delay: 0.8s;">
+                        <div class="flex items-center mb-4">
+                            <span class="material-icons text-primary-blue text-4xl mr-3">leaderboard</span>
+                            <h3 class="text-xl font-semibold text-gray-900">For Leaders</h3>
+                        </div>
+                        <p class="text-gray-700">Gain real-time executive insights with a comprehensive dashboard for productivity analysis, trend reporting, and benchmarking across your entire operation.</p>
+                    </div>
+                    <!-- Solution Card 2: Operations Managers -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-material-2 animate-fadeIn" style="animation-delay: 1.0s;">
+                        <div class="flex items-center mb-4">
+                            <span class="material-icons text-primary-blue text-4xl mr-3">build</span>
+                            <h3 class="text-xl font-semibold text-gray-900">For Operations Managers</h3>
+                        </div>
+                        <p class="text-gray-700">Streamline and optimize manufacturing processes with a powerful platform designed for continuous improvement and daily operational excellence.</p>
+                    </div>
+                    <!-- Solution Card 3: Supervisors -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-material-2 animate-fadeIn" style="animation-delay: 1.2s;">
+                        <div class="flex items-center mb-4">
+                            <span class="material-icons text-primary-blue text-4xl mr-3">schedule</span>
+                            <h3 class="text-xl font-semibold text-gray-900">For Supervisors</h3>
+                        </div>
+                        <p class="text-gray-700">Optimize production schedules, allocate resources efficiently, anticipate bottlenecks, and strategically schedule maintenance to minimize downtime.</p>
+                    </div>
+                    <!-- Solution Card 4: Operators -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-material-2 animate-fadeIn" style="animation-delay: 1.4s;">
+                        <div class="flex items-center mb-4">
+                            <span class="material-icons text-primary-blue text-4xl mr-3">precision_manufacturing</span>
+                            <h3 class="text-xl font-semibold text-gray-900">For Operators</h3>
+                        </div>
+                        <p class="text-gray-700">Access visual dashboards for real-time monitoring of productivity and quality, enabling early issue identification and rapid problem-solving directly on the line.</p>
+                    </div>
+                    <!-- Solution Card 5: Planners -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-material-2 animate-fadeIn" style="animation-delay: 1.6s;">
+                        <div class="flex items-center mb-4">
+                            <span class="material-icons text-primary-blue text-4xl mr-3">assignment</span>
+                            <h3 class="text-xl font-semibold text-gray-900">For Planners</h3>
+                        </div>
+                        <p class="text-gray-700">Analyze productivity and trends to align product, people, and equipment in production schedules.</p>
+                    </div>
+                    <!-- Solution Card 6: Engineers -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-material-2 animate-fadeIn" style="animation-delay: 1.8s;">
+                        <div class="flex items-center mb-4">
+                            <span class="material-icons text-primary-blue text-4xl mr-3">engineering</span>
+                            <h3 class="text-xl font-semibold text-gray-900">For Engineers</h3>
+                        </div>
+                        <p class="text-gray-700">Leverage real-time data and predictive analytics to monitor equipment performance, proactively identify issues, and significantly reduce maintenance costs.</p>
+                    </div>
+                    <!-- Solution Card 7: Quality Assurance -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-material-2 animate-fadeIn" style="animation-delay: 2.0s;">
+                        <div class="flex items-center mb-4">
+                            <span class="material-icons text-primary-blue text-4xl mr-3">verified</span>
+                            <h3 class="text-xl font-semibold text-gray-900">For Quality Assurance</h3>
+                        </div>
+                        <p class="text-gray-700">Boost KPIs with in-line AI Vision to spot deviations from quality standards instantly and coordinate rapid problem-solving efforts.</p>
+                    </div>
+                     <!-- Solution Card 8: Continuous Improvement -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-material-2 animate-fadeIn" style="animation-delay: 2.2s;">
+                        <div class="flex items-center mb-4">
+                            <span class="material-icons text-primary-blue text-4xl mr-3">loop</span>
+                            <h3 class="text-xl font-semibold text-gray-900">For Continuous Improvement</h3>
+                        </div>
+                        <p class="text-gray-700">Pair real-time factory floor data with WCM and Lean processes to boost productivity and build a high-performance culture.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products" class="py-16 md:py-24 bg-gray-100">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-primary-blue animate-fadeIn" style="animation-delay: 0.2s;">
+                    Our Integrated Product Modules
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Product Card 1: Leadership Dashboard -->
+                    <div class="bg-white p-6 rounded-lg shadow-material-2 animate-fadeIn" style="animation-delay: 0.4s;">
+                        <div class="flex items-center mb-4">
+                            <span class="material-icons text-accent-orange text-4xl mr-3">dashboard</span>
+                            <h3 class="text-xl font-semibold text-gray-900">Leadership Dashboard</h3>
+                        </div>
+                        <p class="text-gray-700">Get instant, organization-wide visibility into key metrics like OEE, quality, and safety, ensuring data consistency for strategic decision-making.</p>
+                    </div>
+                    <!-- Product Card 2: Daily Management -->
+                    <div class="bg-white p-6 rounded-lg shadow-material-2 animate-fadeIn" style="animation-delay: 0.6s;">
+                        <div class="flex items-center mb-4">
+                            <span class="material-icons text-accent-orange text-4xl mr-3">calendar_today</span>
+                            <h3 class="text-xl font-semibold text-gray-900">Daily Management</h3>
+                        </div>
+                        <p class="text-gray-700">Empower teams with digital functions and templates for daily huddles, fostering a culture of continuous improvement and accountability.</p>
+                    </div>
+                    <!-- Product Card 3: Productivity Suite -->
+                    <div class="bg-white p-6 rounded-lg shadow-material-2 animate-fadeIn" style="animation-delay: 0.8s;">
+                        <div class="flex items-center mb-4">
+                            <span class="material-icons text-accent-orange text-4xl mr-3">trending_up</span>
+                            <h3 class="text-xl font-semibold text-gray-900">Productivity Suite (Monitor)</h3>
+                        </div>
+                        <p class="text-gray-700">Measure and display OEE in real-time, with drag-and-drop tools for proactive planning, rescheduling, and detailed downtime analysis.</p>
+                    </div>
+                    <!-- Product Card 4: Data Capture & Display -->
+                    <div class="bg-white p-6 rounded-lg shadow-material-2 animate-fadeIn" style="animation-delay: 1.0s;">
+                        <div class="flex items-center mb-4">
+                            <span class="material-icons text-accent-orange text-4xl mr-3">sensors</span>
+                            <h3 class="text-xl font-semibold text-gray-900">Data Capture & Display</h3>
+                        </div>
+                        <p class="text-gray-700">Connect your facility with IoT technology, sensors, and AI-powered computer vision for real-time oversight of equipment and human processes.</p>
+                    </div>
+                    <!-- Product Card 5: Maintenance -->
+                    <div class="bg-white p-6 rounded-lg shadow-material-2 animate-fadeIn" style="animation-delay: 1.2s;">
+                        <div class="flex items-center mb-4">
+                            <span class="material-icons text-accent-orange text-4xl mr-3">build_circle</span>
+                            <h3 class="text-xl font-semibold text-gray-900">Machine Maintenance</h3>
+                        </div>
+                        <p class="text-gray-700">Proactively plan maintenance cycles based on real-time run-time data, reducing costs and preventing critical failures.</p>
+                    </div>
+                    <!-- Product Card 6: Quality & Sustainability -->
+                    <div class="bg-white p-6 rounded-lg shadow-material-2 animate-fadeIn" style="animation-delay: 1.4s;">
+                        <div class="flex items-center mb-4">
+                            <span class="material-icons text-accent-orange text-4xl mr-3">eco</span>
+                            <h3 class="text-xl font-semibold text-gray-900">Quality & Sustainability</h3>
+                        </div>
+                        <p class="text-gray-700">Track customer complaints, boost KPIs, and monitor energy usage and CO2 emissions for a greener, more efficient operation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Industries Section -->
+        <section id="industries" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-primary-blue animate-fadeIn" style="animation-delay: 0.2s;">
+                    Trusted Across Leading Industries
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Industry Card 1: Plastics -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-material-2 text-center animate-fadeIn" style="animation-delay: 0.4s;">
+                        <span class="material-icons text-primary-blue text-6xl mb-4">polymer</span>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Plastics Manufacturing</h3>
+                        <p class="text-gray-700">Specialized solutions for injection molding, extrusion, and all plastic production processes.</p>
+                    </div>
+                    <!-- Industry Card 2: Food & Beverage -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-material-2 text-center animate-fadeIn" style="animation-delay: 0.6s;">
+                        <span class="material-icons text-primary-blue text-6xl mb-4">local_dining</span>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Food & Beverage</h3>
+                        <p class="text-gray-700">Ensure quality, compliance, and efficiency in food processing and packaging.</p>
+                    </div>
+                    <!-- Industry Card 3: Metal Fabrication -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-material-2 text-center animate-fadeIn" style="animation-delay: 0.8s;">
+                        <span class="material-icons text-primary-blue text-6xl mb-4">precision_manufacturing</span>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Metal Fabrication</h3>
+                        <p class="text-gray-700">Optimize cutting, welding, and assembly for precision metal components.</p>
+                    </div>
+                    <!-- Industry Card 4: Building Materials -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-material-2 text-center animate-fadeIn" style="animation-delay: 1.0s;">
+                        <span class="material-icons text-primary-blue text-6xl mb-4">construction</span>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Building Materials</h3>
+                        <p class="text-gray-700">Enhance production of concrete, timber, and other construction essentials.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section id="resources" class="py-16 md:py-24 bg-gray-100">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-primary-blue animate-fadeIn" style="animation-delay: 0.2s;">
+                    Explore Our Resources
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-material-2 animate-fadeIn" style="animation-delay: 0.4s;">
+                        <div class="flex items-center mb-4">
+                            <span class="material-icons text-accent-orange text-4xl mr-3">event</span>
+                            <h3 class="text-xl font-semibold text-gray-900">Upcoming Events</h3>
+                        </div>
+                        <p class="text-gray-700 mb-4">Stay updated on where you can find Thingtrax, like our participation at IFE 2024.</p>
+                        <a href="#" class="text-primary-blue font-semibold hover:underline">View All Events &rarr;</a>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-material-2 animate-fadeIn" style="animation-delay: 0.6s;">
+                        <div class="flex items-center mb-4">
+                            <span class="material-icons text-accent-orange text-4xl mr-3">article</span>
+                            <h3 class="text-xl font-semibold text-gray-900">Latest Insights</h3>
+                        </div>
+                        <p class="text-gray-700 mb-4">Read articles on making sense of complex manufacturing data and practical solutions to Industry 4.0 challenges.</p>
+                        <a href="#" class="text-primary-blue font-semibold hover:underline">Read Our Blog &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section id="contact" class="bg-primary-blue text-white py-16 md:py-24 text-center">
+            <div class="container mx-auto px-4 animate-fadeIn" style="animation-delay: 0.2s;">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your Manufacturing?</h2>
+                <p class="text-lg md:text-xl mb-10 opacity-90">
+                    Discover how Thingtrax can revolutionize your manufacturing operations with IoT sensors, AI-enabled software, and real-time data insights.
+                </p>
+                <a href="#" class="material-button bg-accent-orange text-gray-900 font-semibold py-3 px-10 rounded-full text-xl hover:bg-yellow-500 transition duration-300">
+                    Get a Free Demo Today
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-10">
+        <div class="container mx-auto px-4 text-center md:flex md:justify-between md:items-center">
+            <div class="mb-4 md:mb-0">
+                <p>&copy; 2024 Thingtrax. All rights reserved.</p>
+            </div>
+            <div class="flex justify-center md:justify-end space-x-6">
+                <a href="#" class="hover:text-white transition-colors duration-300">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition-colors duration-300">Terms of Service</a>
+                <a href="#" class="hover:text-white transition-colors duration-300">Resources</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for animations and responsive navigation
+        document.addEventListener('DOMContentLoaded', () => {
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    // Close mobile menu after clicking a link
+                    if (window.innerWidth < 768) {
+                        document.getElementById('navMenu').classList.remove('open');
+                    }
+                });
+            });
+
+            // Mobile Navigation Toggle
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('open');
+            });
+
+            // Intersection Observer for fade-in animations
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                        observer.unobserve(entry.target); // Stop observing once animated
+                    }
+                });
+            }, observerOptions);
+
+            // Apply observer to all elements with animate-fadeIn, animate-slideInLeft, animate-slideInRight
+            document.querySelectorAll('.animate-fadeIn, .animate-slideInLeft, .animate-slideInRight').forEach(el => {
+                el.style.animationPlayState = 'paused'; // Pause animation initially
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
