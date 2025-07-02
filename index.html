@@ -146,22 +146,16 @@
             position: absolute;
             top: 50%; /* Center the video */
             left: 50%; /* Center the video */
-            transform: translate(-50%, -50%) scale(1.5); /* Zoom in for mobile and initial desktop */
+            transform: translate(-50%, -50%) scale(1.2); /* Slightly zoomed for desktop */
             transform-origin: center center;
         }
 
-        /* Responsive adjustment for zoom */
-        @media (min-width: 768px) {
-            .hero-video-container iframe {
-                transform: translate(-50%, -50%) scale(1.2); /* Slightly less zoom on desktop */
-            }
-        }
         /* Ensure video covers entire hero section on mobile by making iframe larger */
         @media (max-width: 767px) {
             .hero-video-container iframe {
-                width: 150vw; /* Make it wider than viewport */
-                height: 150vh; /* Make it taller than viewport */
-                transform: translate(-50%, -50%) scale(1); /* No additional scale, let width/height handle cover */
+                width: 200vw; /* Make it significantly wider than viewport */
+                height: 200vh; /* Make it significantly taller than viewport */
+                transform: translate(-50%, -50%); /* Keep centered */
             }
         }
 
@@ -197,7 +191,7 @@
         <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center">
                 <!-- PNG Logo -->
-                <img src="/img/thingtrxlogo.png" alt="Thingtrax Logo" class="h-10 w-auto mr-2">
+                <img src="https://raw.githubusercontent.com/usmanilm/thingtrax/refs/heads/main/img/thingtrxlogo.png" alt="Thingtrax Logo" class="h-10 w-auto mr-2">
             </div>
             <div class="md:hidden">
                 <button id="hamburger" class="text-primary-dark-grey focus:outline-none">
